@@ -1,4 +1,8 @@
 import Kitura
+import LoggerAPI
+import HeliumLogger
+
+HeliumLogger.use()
 
 let router = Router()
 
