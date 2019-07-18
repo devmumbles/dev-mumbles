@@ -9,7 +9,9 @@ RUN apt-get update && apt upgrade -qqy && \
     locale-gen en_US.UTF-8 && \
     sed -i -E 's/# (set convert-meta off)/\1/' /etc/inputrc && \
     ln -fs /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
-    dpkg-reconfigure -f noninteractive tzdata
+    dpkg-reconfigure -f noninteractive tzdata && \
+    git clone https://github.com/yonaskolb/Mint.git /Mint && \
+    cd /Mint && make
 
 ENV LANG=en_US.UTF-8 \
     LANGUAGE=en_US.UTF-8 \
