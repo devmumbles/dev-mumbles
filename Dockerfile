@@ -1,4 +1,4 @@
-FROM swift:latest
+FROM swift:5.0.1
 
 RUN mkdir /mumbles
 WORKDIR /mumbles
