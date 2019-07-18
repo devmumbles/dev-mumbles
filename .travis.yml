@@ -12,8 +12,12 @@ install:
   - eval "$(swiftenv init -)"
   - swiftenv install || true
 
-script:
-  - swift build
+jobs:
+  include:
+    - stage: build
+      script: swift build
+    - stage: test
+      script: swift test
 
 cache:
   directories:
