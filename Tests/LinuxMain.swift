@@ -1,7 +1,7 @@
 import XCTest
 
-import mumblesTests
+import DevMumblesTests
 
 var tests = [XCTestCaseEntry]()
-tests += mumblesTests.allTests()
+tests += DevMumblesTests.allTests()
 XCTMain(tests)

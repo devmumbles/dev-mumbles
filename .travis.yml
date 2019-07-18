@@ -1,0 +1,20 @@
+language: generic
+
+os: osx
+osx_image: xcode11
+sudo: required
+
+install:
+  - brew update
+  - git clone https://github.com/kylef/swiftenv.git ~/.swiftenv
+  - export SWIFTENV_ROOT="$HOME/.swiftenv"
+  - export PATH="$SWIFTENV_ROOT/bin:$PATH"
+  - eval "$(swiftenv init -)"
+  - swiftenv install || true
+
+script:
+  - swift build
+
+cache:
+  directories:
+    - .build
