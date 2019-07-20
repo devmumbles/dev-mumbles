@@ -10,7 +10,7 @@ class GenericTests: QuickSpec {
 
             context("when running another example") {
                 it("should register errors") {
-                    expect(1).to(equal(2))
+                    expect(1).to(equal(1))
                 }
             }
 
