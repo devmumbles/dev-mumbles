@@ -1,7 +1,8 @@
 import XCTest
+import Quick
 
-import DevMumblesTests
+@testable import DevMumblesTests
 
-var tests = [XCTestCaseEntry]()
-tests += DevMumblesTests.allTests()
-XCTMain(tests)
+QCKMain([
+    GenericTests.self,
+])
