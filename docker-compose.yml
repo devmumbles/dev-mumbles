@@ -1,0 +1,51 @@
+version: "3.7"
+services:
+  web:
+    build: .
+    image: dev-mumbles
+    working_dir: /mumbles
+    tty: true
+    stdin_open: true
+    command: >
+      /bin/sh -c "
+        while ! nc -zv couchdb 5984;
+        do
+          echo 'CouchDB not ready' && sleep 5
+        done
+        if [ 404 = `curl -u admin:123456 --write-out %{http_code} --silent --output /dev/null http://couchdb:5984/_global_changes` ]; then
+          curl -u admin:123456 -X PUT http://couchdb:5984/_global_changes
+          curl -u admin:123456 -X PUT http://couchdb:5984/_replicator
+          curl -u admin:123456 -X PUT http://couchdb:5984/_users
+        fi
+        swift run
+      "
+    volumes:
+      - .:/mumbles:delegated
+    ports:
+      - "${HOST_PORT:-8080}:8080"
+    networks:
+      - mumblesnet
+    environment:
+      DB_HOST: "${DB_HOST:-couchdb}"
+      DB_PORT: "${DB_PORT:-5984}"
+      DB_USER: "admin"
+      DB_PASSWORD: "123456"
+    depends_on:
+      - couchdb
+  couchdb:
+    image: couchdb:2.3.1
+    volumes:
+      - couchdata:/opt/couchdb/data:delegated
+    ports:
+      - "${DB_PORT:-5984}:5984"
+    networks:
+      - mumblesnet
+    environment:
+      COUCHDB_USER: "admin"
+      COUCHDB_PASSWORD: "123456"
+networks:
+  mumblesnet:
+    driver: "bridge"
+volumes:
+  couchdata:
+    driver: "local"

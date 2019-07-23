@@ -47,6 +47,15 @@
         }
       },
       {
+        "package": "Kitura-CouchDB",
+        "repositoryURL": "https://github.com/IBM-Swift/Kitura-CouchDB.git",
+        "state": {
+          "branch": null,
+          "revision": "cf052fd0ef7b1820526a291e8f2fc6757f87335b",
+          "version": "3.1.1"
+        }
+      },
+      {
         "package": "Kitura-net",
         "repositoryURL": "https://github.com/IBM-Swift/Kitura-net.git",
         "state": {

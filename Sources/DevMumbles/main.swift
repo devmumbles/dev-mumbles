@@ -2,8 +2,18 @@ import Kitura
 import LoggerAPI
 import HeliumLogger
 import KituraStencil
+import CouchDB
+import Foundation
 
 HeliumLogger.use()
+
+let connProperties = ConnectionProperties(
+    host: ProcessInfo.processInfo.environment["DB_HOST"]!,
+    port: UInt16(ProcessInfo.processInfo.environment["DB_PORT"]!) ?? 5984,
+    secured: false,
+    username: ProcessInfo.processInfo.environment["DB_USER"],
+    password: ProcessInfo.processInfo.environment["DB_PASSWORD"]
+)
 
 let router = Router()
 router.add(templateEngine: StencilTemplateEngine())
