@@ -27,8 +27,8 @@ Add New Repository->Clone repository.
 #### Through terminal
 
 ```bash
-git clone git@github.com:[SEU USUARIO]/livrodealemao.git # via SSH
-git clone https://github.com/[SEU USUARIO]/livrodealemao.git # via HTTPS
+git clone git@github.com:[YOUR USER]/livrodealemao.git # via SSH
+git clone https://github.com/[YOUR USER]/livrodealemao.git # via HTTPS
 ```
 
 This will create a folder in your local machine containing the project files.
