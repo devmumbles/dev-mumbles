@@ -27,8 +27,8 @@ Add New Repository->Clone repository.
 #### Through terminal
 
 ```bash
-git clone git@github.com:[YOUR USER]/livrodealemao.git # via SSH
-git clone https://github.com/[YOUR USER]/livrodealemao.git # via HTTPS
+git clone git@github.com:[YOUR USER]/dev-mumbles.git # via SSH
+git clone https://github.com/[YOUR USER]/dev-mumbles.git # via HTTPS
 ```
 
 This will create a folder in your local machine containing the project files.
@@ -41,9 +41,11 @@ Done! From now on, it's time to familiarize with the project and initialize it!
 
 Installing Docker is simple and requires only a registration on their website [https://www.docker.com/get-started](https://www.docker.com/get-started).
 
-After Docker is installed, use your terminal to navigate to the root folder of the project, and then execute: `make run` or `docker run -it --rm -v $(pwd):/mumbles:delegated -w /mumbles -p 8080:8080 dev-mumbles`.
+After Docker is installed, create a network for the project with `docker network create -d bridge mumbles_net`, then use your terminal to navigate to the root folder of the project, and then execute: `make run` or `docker run -it --rm -v $(pwd):/mumbles:delegated -w /mumbles -p 8080:8080 dev-mumbles`.
 
 If everything goes well, after a couple of minutes you will have a development environment `up and running`. To verify, access [http://127.0.0.1:8080](http://127.0.0.1:8080) on your favorite browser.
+
+You can also configure your `/etc/hosts` file to point `mumbles.localhost` and `mumbles.db` to `127.0.0.1`, this way, you can access the project via `http://mumbles.localhost:8080` and the database via `mumbles.db:5984`.
 
 ### 4. Delivering your contribution
 
