@@ -8,14 +8,14 @@ services:
     stdin_open: true
     command: >
       /bin/sh -c "
-        while ! nc -zv couchdb 5984;
+        while ! nc -zv ${DB_HOST:-mumbles.db} ${DB_PORT:-5984};
         do
           echo 'CouchDB not ready' && sleep 5
         done
-        if [ 404 = `curl -u admin:123456 --write-out %{http_code} --silent --output /dev/null http://couchdb:5984/_global_changes` ]; then
-          curl -u admin:123456 -X PUT http://couchdb:5984/_global_changes
-          curl -u admin:123456 -X PUT http://couchdb:5984/_replicator
-          curl -u admin:123456 -X PUT http://couchdb:5984/_users
+        if [ 404 = `curl -u admin:${DB_PASSWORD:-123456} --write-out %{http_code} --silent --output /dev/null http://${DB_HOST:-mumbles.db}:${DB_PORT:-5984}/_global_changes` ]; then
+          curl -u ${DB_USER:-admin}:${DB_PASSWORD:-123456} -X PUT http://${DB_HOST:-mumbles.db}:${DB_PORT:-5984}/_global_changes
+          curl -u ${DB_USER:-admin}:${DB_PASSWORD:-123456} -X PUT http://${DB_HOST:-mumbles.db}:${DB_PORT:-5984}/_replicator
+          curl -u ${DB_USER:-admin}:${DB_PASSWORD:-123456} -X PUT http://${DB_HOST:-mumbles.db}:${DB_PORT:-5984}/_users
         fi
         swift run
       "
@@ -24,12 +24,14 @@ services:
     ports:
       - "${HOST_PORT:-8080}:8080"
     networks:
-      - mumblesnet
+      mumblesnet:
+        aliases:
+          - mumbles.localhost
     environment:
-      DB_HOST: "${DB_HOST:-couchdb}"
-      DB_PORT: "${DB_PORT:-5984}"
-      DB_USER: "admin"
-      DB_PASSWORD: "123456"
+      DB_HOST: ${DB_HOST:-mumbles.db}
+      DB_PORT: ${DB_PORT:-5984}
+      DB_USER: ${DB_USER:-admin}
+      DB_PASSWORD: ${DB_PASSWORD:-123456}
     depends_on:
       - couchdb
   couchdb:
@@ -39,13 +41,16 @@ services:
     ports:
       - "${DB_PORT:-5984}:5984"
     networks:
-      - mumblesnet
+      mumblesnet:
+        aliases:
+          - mumbles.db
     environment:
-      COUCHDB_USER: "admin"
-      COUCHDB_PASSWORD: "123456"
+      COUCHDB_USER: ${DB_USER:-admin}
+      COUCHDB_PASSWORD: ${DB_PASSWORD:-123456}
 networks:
   mumblesnet:
-    driver: "bridge"
+    external:
+      name: mumbles_net
 volumes:
   couchdata:
     driver: "local"

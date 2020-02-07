@@ -4,13 +4,13 @@ RUN mkdir /mumbles
 WORKDIR /mumbles
 
 RUN apt-get update && apt upgrade -qqy && \
-    DEBIAN_FRONTEND=noninteractive apt-get -qqy --no-install-recommends install build-essential curl git libcurl4-openssl-dev libssl-dev locales netcat-openbsd ssh openssl vim && \
+    DEBIAN_FRONTEND=noninteractive apt-get -qqy --no-install-recommends install build-essential curl git htop libcurl4-openssl-dev libssl-dev locales netcat-openbsd net-tools openssl ssh tzdata vim wget && \
     echo "en_US UTF-8" > /etc/locale.gen && \
     locale-gen en_US.UTF-8 && \
     sed -i -E 's/# (set convert-meta off)/\1/' /etc/inputrc && \
     ln -fs /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
     dpkg-reconfigure -f noninteractive tzdata && \
-    git clone https://github.com/yonaskolb/Mint.git /Mint && \
+    git clone --branch 0.13.0 https://github.com/yonaskolb/Mint.git /Mint && \
     cd /Mint && make
 
 ENV LANG=en_US.UTF-8 \
