@@ -4,7 +4,8 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>{{ title if title else "Dev Mumbles" }}</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+    <title>{{ title if title else "DevMumbles" }}</title>
   </head>
 <body>
   {% block content %}{% endblock %}

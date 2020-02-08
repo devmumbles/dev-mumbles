@@ -1,0 +1,27 @@
+{
+  "name": "dev-mumbles",
+  "version": "1.0.0",
+  "description": "DevMumbles website",
+  "main": "index.js",
+  "scripts": {
+    "build": "postcss Sources/CSS/main.css -o public/css/main.css",
+    "watch": "postcss Sources/CSS/main.css -o public/css/main.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heitorsilva/dev-mumbles.git"
+  },
+  "author": "Heitor Silva <shout@mumbles.dev>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/heitorsilva/dev-mumbles/issues"
+  },
+  "homepage": "https://mumbles.dev",
+  "dependencies": {
+    "@fullhuman/postcss-purgecss": "^2.0.6",
+    "autoprefixer": "^9.7.4",
+    "cssnano": "^4.1.10",
+    "postcss-cli": "^7.1.0",
+    "tailwindcss": "^1.2.0"
+  }
+}

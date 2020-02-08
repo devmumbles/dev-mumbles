@@ -18,8 +18,10 @@ let connProperties = ConnectionProperties(
 let router = Router()
 router.add(templateEngine: StencilTemplateEngine())
 
+router.all("/assets", middleware: StaticFileServer(path: "./public"))
+
 router.get("/") { _, response, next in
-    let context: [String : Any] = ["text": "Hello World!", "title": "DevMumbles - Podcasts about IT"]
+    let context: [String : Any] = ["text": "Hello World!", "title": "DevMumbles - Podcast about Technology, Business and Career"]
 
     try response.render("HelloWorld.stencil", context: context)
     response.status(.OK)
@@ -27,5 +29,5 @@ router.get("/") { _, response, next in
 }
 
 Kitura.addHTTPServer(onPort: 8080, with: router)
-// Kitura.addFastCGIServer(onPort: 8080, with: router)
+Kitura.addFastCGIServer(onPort: 9000, with: router)
 Kitura.run()
