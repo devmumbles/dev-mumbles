@@ -4,12 +4,17 @@ RUN mkdir /mumbles
 WORKDIR /mumbles
 
 RUN apt-get update && apt upgrade -qqy && \
-    DEBIAN_FRONTEND=noninteractive apt-get -qqy --no-install-recommends install build-essential curl git htop libcurl4-openssl-dev libssl-dev locales netcat-openbsd net-tools openssl ssh tzdata vim wget && \
+    DEBIAN_FRONTEND=noninteractive apt-get -qqy --no-install-recommends install build-essential curl git libcurl4-openssl-dev libssl-dev locales netcat-openbsd ssh openssl vim && \
     echo "en_US UTF-8" > /etc/locale.gen && \
     locale-gen en_US.UTF-8 && \
     sed -i -E 's/# (set convert-meta off)/\1/' /etc/inputrc && \
     ln -fs /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
     dpkg-reconfigure -f noninteractive tzdata && \
+    cd /tmp && curl https://nodejs.org/dist/v12.15.0/node-v12.15.0-linux-x64.tar.xz | tar xJ && \
+    mv node-v12.15.0-linux-x64 /opt/node && \
+    ln -s /opt/node/bin/node /usr/local/bin/node && \
+    ln -s /opt/node/bin/npm /usr/local/bin/npm && \
+    ln -s /opt/node/bin/npx /usr/local/bin/npx && \
     git clone --branch 0.13.0 https://github.com/yonaskolb/Mint.git /Mint && \
     cd /Mint && make
 
