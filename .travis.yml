@@ -17,7 +17,7 @@ jobs:
       script: swift build
     - stage: test
       script:
-        - swift test --enable-code-coverage
+        - swift test --enable-code-coverage --show-codecov-path
         - llvm-cov export .build/x86_64-unknown-linux/debug/PredicatePackageTests.xctest -instr-profile=.build/x86_64-unknown-linux/debug/codecov/default.profdata > info.json
       after_success:
         - bash <(curl -s https://codecov.io/bash)
