@@ -1,7 +1,6 @@
-language: minimal
+language: shell
 
 dist: bionic
-sudo: required
 
 env:
   - CODECOV_TOKEN="751a65e7-7962-454d-9080-697e0d8e4954"
