@@ -3,3 +3,4 @@
 !/public/css/.gitkeep
 .build
 .DS_Store
+coverage.json
