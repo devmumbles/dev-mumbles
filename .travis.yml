@@ -3,6 +3,9 @@ language: minimal
 dist: bionic
 sudo: required
 
+env:
+  - CODECOV_TOKEN="751a65e7-7962-454d-9080-697e0d8e4954"
+
 install:
   - if [ ! -d $HOME/.swiftenv/bin ]; then git clone https://github.com/kylef/swiftenv.git $HOME/.swiftenv; fi
   - export PATH="$HOME/.swiftenv/bin:$PATH"
