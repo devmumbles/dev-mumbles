@@ -3,7 +3,7 @@ language: shell
 dist: bionic
 
 env:
-  - CODECOV_TOKEN="751a65e7-7962-454d-9080-697e0d8e4954"
+  - CODECOV_TOKEN="6ec0c172-8b9b-436c-b6e4-82b516140e66"
 
 install:
   - if [ ! -d $HOME/.swiftenv/bin ]; then git clone https://github.com/kylef/swiftenv.git $HOME/.swiftenv; fi
