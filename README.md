@@ -1,4 +1,4 @@
-# Dev Mumbles [![Build Status](https://travis-ci.com/heitorsilva/dev-mumbles.svg?branch=master)](https://travis-ci.com/heitorsilva/dev-mumbles) [![codebeat badge](https://codebeat.co/badges/96238a9f-64c3-4f65-8a33-f3106eb733f2)](https://codebeat.co/projects/github-com-devmumbles-dev-mumbles-master)
+# Dev Mumbles [![Build Status](https://travis-ci.com/devmumbles/dev-mumbles.svg?branch=master)](https://travis-ci.com/devmumbles/dev-mumbles) [![codebeat badge](https://codebeat.co/badges/96238a9f-64c3-4f65-8a33-f3106eb733f2)](https://codebeat.co/projects/github-com-devmumbles-dev-mumbles-master)
 
 https://mumbles.dev
 
