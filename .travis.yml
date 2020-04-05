@@ -19,8 +19,8 @@ jobs:
       script:
         - swift test --enable-code-coverage
       after_success:
-        - llvm-cov export -format="text" .build/x86_64-unknown-linux/debug/DevMumblesPackageTests.xctest -instr-profile=.build/x86_64-unknown-linux/debug/codecov/default.profdata > info.lcov
-        - bash <(curl -s https://codecov.io/bash)
+        - llvm-cov export -format="text" .build/x86_64-unknown-linux/debug/DevMumblesPackageTests.xctest -instr-profile=.build/x86_64-unknown-linux/debug/codecov/default.profdata > coverage.json
+        - bash <(curl -s https://codecov.io/bash) -f coverage.json
 
 cache:
   directories:
